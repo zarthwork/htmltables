@@ -4,11 +4,11 @@
         'description' => '',
         'category' => 'plugin',
         'author' => 'M.Zarth',
-        'author_company' => 'M.Zarth',
+        'author_company' => 'Zarthwork',
         'author_email' => 'martin@zarthwork.de',
         'state' => 'beta',
         'clearCacheOnLoad' => true,
-        'version' => '0.9.1',
+        'version' => '0.9.3',
         'constraints' => [
             'depends' => [
                 'typo3' => '12.4.0-12.4.99',
