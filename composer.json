@@ -1,28 +1,34 @@
 {
-    "name": "zarthwork/htmltables",
-    "type": "typo3-cms-extension",
-    "description": "This extension adds a new content type to create tables by IRRE/Inline",
-    "homepage": "https://www.zarthwork.de",
-    "license": "GPL-2.0+",
-    "support": {
-        "issues": ""
-    },
-    "require": {
-        "typo3/cms-core": "^12.4.0"
-    },
-    "autoload": {
-        "psr-4": {
-            "Zarth\\Htmltables\\": "Classes/"
-        }
-    },
-    "replace": {
-        "zarth/htmltables": "self.version",
-        "typo3-ter/htmltables": "self.version"
-    },
-    "extra": {
-        "typo3/cms": {
-            "extension-key": "htmltables"
-        }
-    }
+	"name": "zarthwork/htmltables",
+	"type": "typo3-cms-extension",
+	"description": "This extension adds a new content type to create tables by IRRE/Inline",
+	"homepage": "https://www.zarthwork.de",
+	"license": "GPL-2.0+",
+	"authors": [
+		{
+			"name": "Martin Zarth",
+			"email": "typo3@zarthwork.de"
+		}
+	],
+	"support": {
+		"issues": "https://github.com/zarthwork/htmltables/issues",
+		"source": "https://github.com/zarthwork/htmltables"
+	},
+	"require": {
+		"typo3/cms-core": "^12.4.0"
+	},
+	"autoload": {
+		"psr-4": {
+			"Zarth\\Htmltables\\": "Classes/"
+		}
+	},
+	"replace": {
+		"zarth/htmltables": "self.version",
+		"typo3-ter/htmltables": "self.version"
+	},
+	"extra": {
+		"typo3/cms": {
+			"extension-key": "htmltables"
+		}
+	}
 }
-        

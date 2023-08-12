@@ -1,9 +1,9 @@
 <?php
     $EM_CONF[$_EXTKEY] = [
         'title' => 'htmltables',
-        'description' => '',
+        'description' => 'This extension adds a new content type to create tables by IRRE/Inline',
         'category' => 'plugin',
-        'author' => 'M.Zarth',
+        'author' => 'Martin Zarth',
         'author_company' => 'Zarthwork',
         'author_email' => 'martin@zarthwork.de',
         'state' => 'beta',
