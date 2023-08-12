@@ -1,0 +1,19 @@
+{namespace t=Zarth\Htmltables\ViewHelpers}
+<f:spaceless>
+
+    <f:variable name="isHeaderCell"><f:if condition="{cell.headercell} || {header_position}==1 && {r.isFirst} || {header_position}==2 && {c.isFirst}">1</f:if></f:variable>
+
+    <f:if condition="{isHeaderCell}">
+        <f:then>
+            <t:tableTag tagName="th" attributesInArray="{cell}">
+                <f:format.html>{cell.bodytext}</f:format.html>
+            </t:tableTag>
+        </f:then>
+        <f:else>
+            <t:tableTag tagName="td" attributesInArray="{cell}">
+                <f:format.html>{cell.bodytext}</f:format.html>
+            </t:tableTag>
+        </f:else>
+    </f:if>
+
+</f:spaceless>

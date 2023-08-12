@@ -1,0 +1,29 @@
+{namespace t=Zarth\Htmltables\ViewHelpers}
+
+<f:for each="{rows}" as="row" iteration="r">
+    <f:render section="row" arguments="{r:r, data:data, cells:row.records}" />
+</f:for>
+
+<!-- render each row  -->
+<f:section name="row">
+    <f:render section="RowGroupTags" arguments="{r:r, data:data}" />
+        <tr>
+            <f:for each="{cells}" as="cell" iteration="c">
+                <f:render partial="Cell" arguments="{r:r, c:c, cell:cell.data, header_position: data.table_header_position}" />
+            </f:for>
+</f:section>
+
+
+<f:section name="RowGroupTags">
+    <f:comment>
+        <!--
+            "[…], but the corresponding end tags may always be safely omitted."
+            https://www.w3.org/TR/html401/struct/tables.html#h-11.2.3
+        -->
+    </f:comment>
+    <f:if condition="{data.table_header_position}==1 && {r.isFirst}">
+        <f:then><thead></f:then>
+        <f:else if="{data.table_tfoot} && {r.isLast}"><tfoot></f:else>
+        <f:else if="{data.table_tfoot} && !{r.isLast} || {data.table_header_position}==1 && !{r.isFirst}"><tbody></f:else>
+    </f:if>
+</f:section>

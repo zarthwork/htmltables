@@ -1,0 +1,27 @@
+# Load default processing options
+imports:
+    - { resource: 'EXT:htmltables/Configuration/RTE/Processing.yaml' }
+    - { resource: 'EXT:rte_ckeditor/Configuration/RTE/Editor/Base.yaml' }
+
+# Minimal configuration for the editor
+editor:
+  config:
+    toolbar:
+      items:
+        - bold
+        - italic
+        - '|'
+        - clipboard
+        - undo
+        - redo
+        - subscript
+        - superscript
+        - softhyphen
+        - '|'
+        - bulletedList
+        - numberedList
+        - blockQuote
+        - alignment
+        - '|'
+        - link
+        - '|'

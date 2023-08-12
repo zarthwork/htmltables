@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64">
+    <title>TYPO3 Extension Icon</title>
+    <g fill="none" fill-rule="evenodd">
+        <path fill="#E1F523" d="M0 0h65v64H0z" />
+        <path fill="#4A90E2" d="M18.392 52h26.752v-7.936H27.8v-9.6h14.208v-7.872H27.8v-8.384h16.704v-7.936H18.392z" />
+    </g>
+</svg>

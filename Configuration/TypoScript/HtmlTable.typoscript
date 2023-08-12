@@ -1,0 +1,29 @@
+tt_content {
+  htmltables_htmltable =< lib.contentElement
+  htmltables_htmltable {
+    partialRootPaths.8201312 = EXT:htmltables/Resources/Private/Partials/
+    templateRootPaths.8201312 = EXT:htmltables/Resources/Private/Templates/
+    templateName = HtmlTable
+
+    dataProcessing {
+        10 = database-query
+        10 {
+            table = tx_htmltables_table_row
+            selectFields = *
+            where.data = field:uid
+            where.wrap = {#parenttable}='tt_content' AND {#parentid}='|'
+            orderBy = sorting
+            as = rows
+            dataProcessing {
+                10 = database-query
+                10 {
+                    table = tx_htmltables_table_cell
+                    where.data = field:uid
+                    where.wrap = {#parenttable}='tx_htmltables_table_row' AND {#parentid}='|'
+                    orderBy = sorting
+                }
+            }
+        }
+    }
+  }
+}

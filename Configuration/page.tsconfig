@@ -1,0 +1,18 @@
+RTE.config.tx_htmltables_table_cell.bodytext.preset = htmltables
+
+mod.wizards.newContentElement.wizardItems {
+  // add the content element to the tab "common"
+  common {
+    elements {
+      htmltables_htmltable {
+        iconIdentifier = content-table
+        title = LLL:EXT:htmltables/Resources/Private/Language/locallang.xlf:htmltables_htmltable_title
+        description = LLL:EXT:htmltables/Resources/Private/Language/locallang.xlf:htmltables_htmltable_description
+        tt_content_defValues {
+          CType = htmltables_htmltable
+        }
+      }
+    }
+    show := addToList(htmltables_htmltable)
+  }
+}
