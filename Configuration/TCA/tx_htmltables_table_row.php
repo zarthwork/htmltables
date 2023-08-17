@@ -70,14 +70,16 @@ return [
             ],
         ],
         'hidden' => [
-            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.enabled',
+            'exclude' => true,
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.visible',
             'config' => [
                 'type' => 'check',
                 'renderType' => 'checkboxToggle',
-                'default' => 0,
                 'items' => [
                     [
-                        'label' => '',
+                        0 => 'Visible',
+                        'labelChecked' => 'Enabled',
+                        'labelUnchecked' => 'Disabled',
                         'invertStateDisplay' => true,
                     ],
                 ],
