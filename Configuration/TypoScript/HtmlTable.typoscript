@@ -6,7 +6,8 @@ tt_content {
     templateName = HtmlTable
 
     dataProcessing {
-        10 = database-query
+        #10 = database-query # since v12
+        10 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
         10 {
             table = tx_htmltables_table_row
             selectFields = *
@@ -15,7 +16,8 @@ tt_content {
             orderBy = sorting
             as = rows
             dataProcessing {
-                10 = database-query
+                #10 = database-query # since v12
+                10 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
                 10 {
                     table = tx_htmltables_table_cell
                     where.data = field:uid

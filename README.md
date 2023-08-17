@@ -20,17 +20,17 @@ composer req zarthwork/htmltables
 
 Please don't forget to include the neccessary typoscripts into the template!
 
-````
+```
  + CType: HtmlTable (htmltables)
 ```
 
 ## Screenshots
 
 Frontend:
-![Frontend view](https://github.com/zarthwork/htmltables/master/Documentation/Images/frontend-example.png "Frontend example")
+![Frontend view](https://raw.githubusercontent.com/zarthwork/htmltables/master/Documentation/Images/frontend-example.png)
 
 Backend:
-![Backend view](https://github.com/zarthwork/htmltables/master/Documentation/Images/backend-example.png "Backend example")
+![Backend view](https://raw.githubusercontent.com/zarthwork/htmltables/master/Documentation/Images/backend-example.png)
 
 ## License
 
