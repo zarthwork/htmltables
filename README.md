@@ -1,7 +1,7 @@
 TYPO3 extension ``htmltables``
 ========================================
 
-This extension adds a new content element type to create HTML tables by Inline-Relational-Record-Editing (IRRE/Inline)
+This extension adds a new content element type to create sophisticated HTML tables by Inline-Relational-Record-Editing (IRRE/Inline)
 
 - Repository:  https://github.com/zarthwork/htmltables
 - Issues:      https://github.com/zarthwork/htmltables/issues
