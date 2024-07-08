@@ -15,6 +15,7 @@ CREATE TABLE tx_htmltables_table_cell(
 		parentid int(11) DEFAULT '0' NOT NULL,
 		parenttable varchar(255) DEFAULT '' NOT NULL,
 		bodytext mediumtext,
+		records text,
 		headercell tinyint(3) DEFAULT '0' NOT NULL,
 		scope varchar(10) DEFAULT '' NOT NULL,
 		abbr varchar(30) DEFAULT '' NOT NULL,

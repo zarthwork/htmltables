@@ -1,8 +1,8 @@
 {namespace t=Zarth\Htmltables\ViewHelpers}
+
 <f:spaceless>
-
     <f:variable name="isHeaderCell"><f:if condition="{cell.headercell} || {header_position}==1 && {r.isFirst} || {header_position}==2 && {c.isFirst}">1</f:if></f:variable>
-
+    <f:variable name="content"><f:render section="CellContent" arguments="{records: records, cell: cell}" /></f:variable>
     <f:if condition="{isHeaderCell}">
         <f:then>
             <t:tableTag tagName="th" attributesInArray="{cell}">
@@ -15,5 +15,27 @@
             </t:tableTag>
         </f:else>
     </f:if>
-
 </f:spaceless>
+
+
+<f:comment>
+<!--
+
+    Cell contents:
+    Renders either the bodytext or the
+    typoscript configured data from a given record
+
+-->
+</f:comment>
+<f:section name="CellContent">
+    <f:if condition="{cell.records} && {records}">
+        <f:then>
+            <f:for each="{records}" as="record">
+                <f:cObject typoscriptObjectPath="lib.innerTableCellRecord" data="{record.data}" />
+            </f:for>
+        </f:then>
+        <f:else>
+            <f:format.html>{cell.bodytext}</f:format.html>
+        </f:else>
+    </f:if>
+</f:section>

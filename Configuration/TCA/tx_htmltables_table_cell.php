@@ -35,6 +35,22 @@ return [
                 'richtextConfiguration' => 'minimal',
             ],
         ],
+        'records' => [
+            'label' => 'Content record',
+            'config' => [
+                'type' => 'group',
+                'allowed' => 'tt_content',
+                'maxitems' => 1,
+                'minitems' => 0,
+                'size' => 1,
+                // 'suggestOptions' => [
+                //     'default' => [
+                //         'additionalSearchFields' => 'nav_title, url',
+                //         'addWhere' => 'AND pages.doktype = 1',
+                //     ],
+                // ],
+            ],
+        ],
         'headercell' => [
             'exclude' => 1,
             'label' => 'Header cell',
@@ -192,7 +208,7 @@ return [
     'types' => [
         '0' => ['showitem' => '
             --div--;LLL:EXT:htmltables/Resources/Private/Language/locallang_tabs.xlf:general,
-                --palette--;;palette, bodytext,
+                --palette--;;palette, bodytext, records,
             --div--;LLL:EXT:htmltables/Resources/Private/Language/locallang_tabs.xlf:attributes,
                 --palette--;;palette_attributes,
             --div--;LLL:EXT:htmltables/Resources/Private/Language/locallang_tabs.xlf:spans,
