@@ -15,7 +15,7 @@
 		"source": "https://github.com/zarthwork/htmltables"
 	},
 	"require": {
-		"typo3/cms-core": ">=11.5.0 || >=12.4.0"
+		"typo3/cms-core": "^11.5 || ^12.4 || ^13.2"
 	},
 	"autoload": {
 		"psr-4": {
@@ -23,7 +23,7 @@
 		}
 	},
 	"replace": {
-		"zarth/htmltables": "self.version",
+		"htmltables": "self.version",
 		"typo3-ter/htmltables": "self.version"
 	},
 	"extra": {

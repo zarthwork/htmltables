@@ -7,7 +7,10 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 defined('TYPO3') or die();
 
-$GLOBALS['TYPO3_CONF_VARS']['RTE']['Presets']['htmltables'] = 'EXT:htmltables/Configuration/RTE/Htmltables.yaml';
+(function($extKey)
+{
+    // v12 & v13 
+    $GLOBALS['TYPO3_CONF_VARS']['RTE']['Presets'][$extKey] = 'EXT:'.$extKey.'/Configuration/RTE/Htmltables.yaml';
 
 // condition for version 11
 $versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
@@ -17,5 +20,14 @@ if ($versionInformation->getMajorVersion() < 12) {
         '@import "EXT:htmltables/Configuration/page.tsconfig"'
     );
 
-    $GLOBALS['TYPO3_CONF_VARS']['RTE']['Presets']['htmltables'] = 'EXT:htmltables/Configuration/RTE/Htmltables_v11.yaml';
-}
+    // condition for v11
+    $versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
+    if ($versionInformation->getMajorVersion() < 12) {
+        ExtensionManagementUtility::addPageTSConfig(
+            '@import "EXT:'.$extKey.'/Configuration/page.tsconfig"'
+        );
+        $GLOBALS['TYPO3_CONF_VARS']['RTE']['Presets'][$extKey] = 'EXT:'.$extKey.'/Configuration/RTE/Htmltables_v11.yaml';
+    }
+
+
+})('htmltables');
