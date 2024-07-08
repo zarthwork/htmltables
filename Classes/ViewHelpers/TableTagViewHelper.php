@@ -27,6 +27,7 @@ class TableTagViewHelper extends AbstractTagBasedViewHelper
         parent::initializeArguments();
         $this->registerUniversalTagAttributes();
         $this->registerArgument('attributesInArray', 'array', 'Array of tag attributes');
+        $this->registerArgument('role', 'string', 'Role attribute');
         $this->registerArgument('tagName', 'string', 'Name of tag');
     }
 
@@ -34,6 +35,14 @@ class TableTagViewHelper extends AbstractTagBasedViewHelper
     {
         // set content
         $this->tag->setContent($this->renderChildren());
+        
+        // set role attribute
+        if (!empty($this->arguments['role'])) {
+            $role = $this->arguments['role'];
+            $this->tag->addAttribute(
+                'role', $role
+            );
+        }
 
         // set attributes
         $attributes = $this->arguments['attributesInArray'];
