@@ -1,7 +1,7 @@
 RTE.config.tx_htmltables_table_cell.bodytext.preset = htmltables
 
 mod.wizards.newContentElement.wizardItems {
-  common {
+  lists {
     elements {
       htmltables_htmltable {
         iconIdentifier = content-table-plus
