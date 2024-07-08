@@ -15,12 +15,13 @@ return [
         'enablecolumns' => [
             'disabled' => 'hidden',
         ],
+        'formattedLabel_userFunc' => Zarth\Htmltables\Service\InlineLabelService::class . '->getInlineLabel',
     ],
    'columns' => [
         'title' => [
             'label' => 'LLL:EXT:htmltables/Resources/Private/Language/locallang_db.xlf:descriptiveRowTitle',
             'config' => [
-                'default' => 'Row',
+                //'default' => 'Row', // this is handled by "ctrl.formattedLabel_userFunc"
                 'type' => 'input',
                 'size' => 20,
                 'max' => 30,

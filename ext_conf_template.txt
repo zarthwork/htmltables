@@ -1,0 +1,2 @@
+# cat=backend; type=options[None=0,Amount of cells=1,Cell contents=2,Cell contents + amount of cells=3]; label=Show cell informations in backend form
+showCellInformation = 0

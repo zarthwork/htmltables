@@ -29,5 +29,7 @@ if ($versionInformation->getMajorVersion() < 12) {
         $GLOBALS['TYPO3_CONF_VARS']['RTE']['Presets'][$extKey] = 'EXT:'.$extKey.'/Configuration/RTE/Htmltables_v11.yaml';
     }
 
+    // backend css
+    $GLOBALS['TYPO3_CONF_VARS']['BE']['stylesheets'][$extKey] = 'EXT:'.$extKey.'/Resources/Public/Css/';
 
 })('htmltables');
