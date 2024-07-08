@@ -3,7 +3,7 @@
 return [
     'ctrl' => [
         'title' => 'LLL:EXT:htmltables/Resources/Private/Language/locallang.xlf:table_row_title',
-        'label' => 'title',
+        'label' => 'bodytext',
         'iconfile' => 'EXT:htmltables/Resources/Public/Icons/Cell.svg',
         'security' => [
             'ignorePageTypeRestriction' => true,
