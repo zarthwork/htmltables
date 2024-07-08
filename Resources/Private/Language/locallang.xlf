@@ -13,10 +13,10 @@
                 <source>Html Table</source>
             </trans-unit>
             <trans-unit id="htmltables_htmltable_description" resname="htmltables_htmltable_description" approved="yes">
-                <source>Html Table Description</source>
+                <source>Create HTML tables with inline relational editing</source>
             </trans-unit>
             <trans-unit id="table_row_title" resname="table_row_title" approved="yes">
-                <source>Table row </source>
+                <source>Table row</source>
             </trans-unit>
         </body>
     </file>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="EXT:htmltables/Resources/Private/Language/locallang.xlf" date="2023-07-24-2023T16:38:34Z" product-name="htmltables">
+        <header/>
+        <body>
+            <trans-unit id="descriptiveRowTitle" resname="descriptiveRowTitle" approved="yes">
+                <source>Descriptive row title (always hidden)</source>
+            </trans-unit>
+            <trans-unit id="visibleRow" resname="visibleRow" approved="yes">
+                <source>Visible row</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
+

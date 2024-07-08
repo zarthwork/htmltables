@@ -18,7 +18,7 @@ return [
     ],
    'columns' => [
         'title' => [
-            'label' => 'Title (hidden)',
+            'label' => 'LLL:EXT:htmltables/Resources/Private/Language/locallang_db.xlf:descriptiveRowTitle',
             'config' => [
                 'default' => 'Row',
                 'type' => 'input',
@@ -71,13 +71,13 @@ return [
         ],
         'hidden' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.visible',
+            'label' => 'LLL:EXT:htmltables/Resources/Private/Language/locallang_db.xlf:visibleRow',
             'config' => [
                 'type' => 'check',
                 'renderType' => 'checkboxToggle',
                 'items' => [
                     [
-                        0 => 'Visible',
+                        0 => '',
                         'labelChecked' => 'Enabled',
                         'labelUnchecked' => 'Disabled',
                         'invertStateDisplay' => true,
