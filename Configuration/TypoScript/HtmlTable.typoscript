@@ -5,27 +5,29 @@ tt_content {
     templateRootPaths.8201312 = EXT:htmltables/Resources/Private/Templates/
     templateName = HtmlTable
 
+    settings < plugin.htmltables.settings
+
     dataProcessing {
-        #10 = database-query # since v12
-        10 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
-        10 {
-            table = tx_htmltables_table_row
-            selectFields = *
-            where.data = field:uid
-            where.wrap = {#parenttable}='tt_content' AND {#parentid}='|'
-            orderBy = sorting
-            as = rows
-            dataProcessing {
-                #10 = database-query # since v12
-                10 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
-                10 {
-                    table = tx_htmltables_table_cell
-                    where.data = field:uid
-                    where.wrap = {#parenttable}='tx_htmltables_table_row' AND {#parentid}='|'
-                    orderBy = sorting
-                }
-            }
+      #10 = database-query # since v12
+      10 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
+      10 {
+        table = tx_htmltables_table_row
+        selectFields = *
+        where.data = field:uid
+        where.wrap = {#parenttable}='tt_content' AND {#parentid}='|'
+        orderBy = sorting
+        as = rows
+        dataProcessing {
+          #10 = database-query # since v12
+          10 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
+          10 {
+              table = tx_htmltables_table_cell
+              where.data = field:uid
+              where.wrap = {#parenttable}='tx_htmltables_table_row' AND {#parentid}='|'
+              orderBy = sorting
+          }
         }
+      }
     }
   }
 }
