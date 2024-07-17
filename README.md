@@ -14,6 +14,11 @@ This extension is designed to easily create HTML tables with the necessary synta
 
 ## Latest features
 
+### Version 0.9.8
+- Show record uids in the rows of the BE form
+- Fix rendering of record elements
+- Fix tbody rendering
+
 ### Version 0.9.7
 - Raised compatibility to version 13
 - You can now use record elements in addition to RTE bodytexts
