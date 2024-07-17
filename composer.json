@@ -23,7 +23,6 @@
 		}
 	},
 	"replace": {
-		"htmltables": "self.version",
 		"typo3-ter/htmltables": "self.version"
 	},
 	"extra": {
