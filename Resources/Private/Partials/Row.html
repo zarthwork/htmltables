@@ -4,13 +4,19 @@
     <f:render section="row" arguments="{r:r, data:data, cells:row.records}" />
 </f:for>
 
-<!-- render each row  -->
+<f:comment>
+    <!-- render each row …  -->
+</f:comment>
 <f:section name="row">
+    <f:spaceless>
+
     <f:render section="RowGroupTags" arguments="{r:r, data:data}" />
         <tr>
             <f:for each="{cells}" as="cell" iteration="c">
                 <f:render partial="Cell" arguments="{r:r, c:c, cell:cell.data, header_position: data.table_header_position, records:cell.records}" />
             </f:for>
+
+    </f:spaceless>
 </f:section>
 
 
@@ -21,9 +27,30 @@
             https://www.w3.org/TR/html401/struct/tables.html#h-11.2.3
         -->
     </f:comment>
-    <f:if condition="{data.table_header_position}==1 && {r.isFirst}">
-        <f:then><thead></f:then>
-        <f:else if="{data.table_tfoot} && {r.isLast}"><tfoot></f:else>
-        <f:else if="{data.table_tfoot} && !{r.isLast} || {data.table_header_position}==1 && !{r.isFirst}"><tbody></f:else>
+    <f:if condition="{data.table_header_position}==1">
+        <f:then>
+            <f:if condition="{r.isFirst}">
+                <f:then>
+                    <thead>
+                </f:then>
+                <f:else if="{r.index} == 1 && {r.total} > 1">
+                    <tbody>
+                </f:else>
+                <f:else if="{data.table_tfoot} && {r.isLast} && {r.total} > 2">
+                    <tfoot>
+                </f:else>
+            </f:if>
+        </f:then>
+        <f:else>
+            <f:if condition="{r.isFirst} && {data.table_tfoot}">
+                <f:then>
+                    <tbody>
+                </f:then>
+                <f:else if="{data.table_tfoot} && {r.isLast}">
+                    <tfoot>
+                </f:else>
+            </f:if>
+        </f:else>
     </f:if>
+
 </f:section>
