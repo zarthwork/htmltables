@@ -9,7 +9,7 @@
     <f:render section="RowGroupTags" arguments="{r:r, data:data}" />
         <tr>
             <f:for each="{cells}" as="cell" iteration="c">
-                <f:render partial="Cell" arguments="{r:r, c:c, cell:cell.data, header_position: data.table_header_position}" />
+                <f:render partial="Cell" arguments="{r:r, c:c, cell:cell.data, header_position: data.table_header_position, records:cell.records}" />
             </f:for>
 </f:section>
 
