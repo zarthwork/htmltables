@@ -45,7 +45,7 @@ class InlineLabelService
         // fetch associated cell contents 
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_htmltables_table_cell');
         $result = $queryBuilder
-            ->select('uid', 'headercell', 'bodytext')
+            ->select('uid', 'headercell', 'bodytext', 'records')
             ->from('tx_htmltables_table_cell')
             ->where(
                 $queryBuilder->expr()->eq('parentid', $queryBuilder->createNamedParameter($params['row']['uid'], Connection::PARAM_INT))
@@ -56,16 +56,20 @@ class InlineLabelService
         $amountOfCells = count($result);
 
         $contentArray = array_column($result, 'bodytext');
+        $recordsArray = array_column($result, 'records');
 
         // strip tags
-        array_walk($contentArray, function(&$value) 
+        array_walk($contentArray, function(&$value, $key) use ($recordsArray)
         { 
             if (!empty($value)) {
                 $value = strip_tags($value);
                 $class = "cell text-truncate";
             }
             else {
-                $value = ' ⸺ ';
+                if (empty($recordsArray[$key]))
+                    $value = ' ⸺ ';
+                else
+                    $value = '< ' . $recordsArray[$key] .' >';
                 $class = 'cell cell-empty text-truncate';
             }
             $value = '<span class="badge text-bg-primary '.$class.'">'.$value.'</span>';
@@ -83,8 +87,8 @@ class InlineLabelService
         //     cropToSpace: true
         // );
 
-        $amountOfCellsRow = '<span class="ms-2 badge text-bg-primary float-end">' . $amountOfCells . ' cells</span>';
-        $cellContentsRow  = $cellContents?' &nbsp; <pre class="mb-0 float-end" style="line-height:1.75">' . $cellContents . '</pre>':'';
+        $amountOfCellsRow = '<span class="ms-2 badge text-bg-secondary float-end">' . $amountOfCells . '</span>';
+        $cellContentsRow  = $cellContents?' &nbsp; <span class="mb-0 float-end" style="line-height:1.75">' . $cellContents . '</span>':'';
 
         // get configuration of cell information display in rows
         $extensionConfiguration = GeneralUtility::makeInstance(ExtensionConfiguration::class);
