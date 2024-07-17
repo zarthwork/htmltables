@@ -1,7 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64">
-    <title>TYPO3 Extension Icon</title>
-    <g fill="none" fill-rule="evenodd">
-        <path fill="#E1F523" d="M0 0h65v64H0z" />
-        <path fill="#4A90E2" d="M18.392 52h26.752v-7.936H27.8v-9.6h14.208v-7.872H27.8v-8.384h16.704v-7.936H18.392z" />
-    </g>
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2" viewBox="0 0 64 64">
+  <path d="M4 2h56v9H4z" style="fill:#1b5291" transform="matrix(.96429 0 0 1 1.143 3)"/>
+  <path d="M4 2h56v7H4z" style="fill:#d8b83d" transform="matrix(.66071 0 0 .85714 19.357 15.286)"/>
+  <path d="M4 2h56v7H4z" style="fill:#89b515" transform="matrix(.25 0 0 .85714 4 15.286)"/>
+  <path d="M4 2h56v7H4z" style="fill:#4a90e2" transform="matrix(.16071 0 0 .85714 4.357 42.286)"/>
+  <path d="M4 2h56v7H4z" style="fill:#4a90e2" transform="matrix(.53571 0 0 .85714 2.857 24.286)"/>
+  <path d="M4 2h56v7H4z" style="fill:#4a90e2" transform="matrix(.375 0 0 .85714 36.5 24.286)"/>
+  <path d="M4 2h56v7H4z" style="fill:#d8b83d" transform="matrix(.69643 0 0 .85714 2.214 33.286)"/>
+  <path d="M4 2h56v7H4z" style="fill:#89b515" transform="matrix(.75 0 0 .85714 14 42.286)"/>
+  <path d="M4 2h56v7H4z" style="fill:#4a90e2" transform="matrix(.69643 0 0 .85714 2.214 51.286)"/>
+  <path d="M4 2h56v7H4z" style="fill:#e2554a" transform="matrix(.21429 0 0 .85714 46.143 51.286)"/>
+  <path d="M4 2h56v7H4z" style="fill:#4a90e2" transform="matrix(.21429 0 0 .85714 46.143 33.286)"/>
 </svg>
