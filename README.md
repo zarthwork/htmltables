@@ -10,7 +10,16 @@ This extension adds a new content element type to create sophisticated HTML tabl
 
 ## »HTML Tables« in a Nutshell
 
-This extension is designed to easily create HTML tables with the necessary syntax and the most important attributes, using "inline records".
+This extension is designed to easily create HTML tables with the necessary syntax and the most important attributes, using "Inline Relational Record Elements". You can use it as a base for your Web Accessible tables.
+
+## Latest features
+
+### Version 0.9.7
+- Raised compatibility to version 13
+- You can now use record elements in addition to RTE bodytexts
+- Extension configuration to switch to responsive table mode
+- New extension icon
+- You'll see a brief cell information in the BE rows
 
 ## Installation
 
