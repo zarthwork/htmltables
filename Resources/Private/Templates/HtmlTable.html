@@ -2,13 +2,12 @@
 <f:layout name="Default" />
 <f:section name="Main">
 
-    <table class="{f:if(condition:'{data.table_class}', then:'ce-table ce-table-{data.table_class}', else:'ce-table')}" >
-        <caption>{data.table_caption}</caption>
     <f:if condition="{settings.useResponsiveTable}">
         <f:variable name="captionId">table-caption-id</f:variable>
         <div class="table-wrap" role="region" aria-labelledby="{captionId}" tabindex="0">
     </f:if>
 
+    <table class="{f:if(condition:'{data.table_class}', then:'ce-table ce-table-{data.table_class}', else:'ce-table')}" >
         <f:if condition="{data.table_caption}">
             <caption {f:if(condition:settings.useResponsiveTable,then:'id=\'{captionId}\'')}>{data.table_caption}</caption>
         </f:if>
