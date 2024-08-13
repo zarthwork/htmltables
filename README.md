@@ -49,9 +49,11 @@ Don't forget to include the required typoscript into your template!
 ## Screenshots
 
 **Frontend**
+
 ![Frontend view](https://raw.githubusercontent.com/zarthwork/htmltables/master/Documentation/Images/frontend-example.png)
 
 **Backend**
+
 ![Backend view](https://raw.githubusercontent.com/zarthwork/htmltables/master/Documentation/Images/backend-example_4.png)
 
 ![Backend wizard](https://raw.githubusercontent.com/zarthwork/htmltables/master/Documentation/Images/backend-wizard.png)

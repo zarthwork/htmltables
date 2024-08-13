@@ -8,7 +8,7 @@
         'author_email' => 'martin@zarthwork.de',
         'state' => 'beta',
         'clearCacheOnLoad' => true,
-        'version' => '0.9.8',
+        'version' => '0.9.9',
         'constraints' => [
             'depends' => [
                 'typo3' => '11.5.0-13.2.99',
