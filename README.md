@@ -1,3 +1,5 @@
+![Static Badge](https://img.shields.io/badge/11-%23FF8700?style=for-the-badge&logo=typo3&label=TYPO3&link=https%3A%2F%2Fget.typo3.org%2Fversion%2F11) ![Static Badge](https://img.shields.io/badge/12-%23FF8700?style=for-the-badge&logo=typo3&label=TYPO3&link=https%3A%2F%2Fget.typo3.org%2Fversion%2F12) ![Static Badge](https://img.shields.io/badge/13-%23FF8700?style=for-the-badge&logo=typo3&label=TYPO3&link=https%3A%2F%2Fget.typo3.org%2Fversion%2F13)
+
 TYPO3 extension ``htmltables``
 ========================================
 
@@ -13,6 +15,12 @@ This extension adds a new content element type to create sophisticated HTML tabl
 This extension is designed to easily create HTML tables with the necessary syntax and the most important attributes, using "Inline Relational Record Elements". You can use it as a base for your Web Accessible tables.
 
 ## Latest features
+
+### Version 0.9.9
+- Modified readme
+- Fixed some compatibility issues with version 11
+- Added translation feature
+- Some backend fixes
 
 ### Version 0.9.8
 - Show record uids in the rows of the BE form
@@ -32,7 +40,7 @@ This extension is designed to easily create HTML tables with the necessary synta
 composer req zarthwork/htmltables
 ```
 
-Please don't forget to include the neccessary typoscripts into the template!
+Don't forget to include the required typoscript into your template!
 
 ```
  + CType: HtmlTable (htmltables)
@@ -40,11 +48,15 @@ Please don't forget to include the neccessary typoscripts into the template!
 
 ## Screenshots
 
-Frontend:
+**Frontend**
 ![Frontend view](https://raw.githubusercontent.com/zarthwork/htmltables/master/Documentation/Images/frontend-example.png)
 
-Backend:
-![Backend view](https://raw.githubusercontent.com/zarthwork/htmltables/master/Documentation/Images/backend-example.png)
+**Backend**
+![Backend view](https://raw.githubusercontent.com/zarthwork/htmltables/master/Documentation/Images/backend-example_4.png)
+
+![Backend wizard](https://raw.githubusercontent.com/zarthwork/htmltables/master/Documentation/Images/backend-wizard.png)
+
+![Backend extension conf](https://raw.githubusercontent.com/zarthwork/htmltables/master/Documentation/Images/system_extconf.png)
 
 ## License
 
