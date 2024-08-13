@@ -37,67 +37,26 @@ class InlineLabelService
      */
     public function getInlineLabel(array &$params)
     {
-        if (empty($params['row']['title']))
-            $params['title'] = $params['row']['sorting']?$params['row']['sorting'].'. Row':'Row';
-        else
-            $params['title'] = $params['row']['title'];
+        $row = $params['row'];
 
-        // fetch associated cell contents 
-        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_htmltables_table_cell');
-        $result = $queryBuilder
-            ->select('uid', 'headercell', 'bodytext', 'records')
-            ->from('tx_htmltables_table_cell')
-            ->where(
-                $queryBuilder->expr()->eq('parentid', $queryBuilder->createNamedParameter($params['row']['uid'], Connection::PARAM_INT))
-            )
-            ->executeQuery()
-            ->fetchAllAssociative();
+        // set row title
+        $params['title'] = $this->setRowTitle($row);
 
-        $amountOfCells = count($result);
+        // get cell amount & content
+        $cells = $this->getCellData($row['uid']);
+        $amountOfCellsRow = $this->getAmountOfCells($cells);
+        $cellContentsRow = $this->getCellContents($cells);
 
-        $contentArray = array_column($result, 'bodytext');
-        $recordsArray = array_column($result, 'records');
-
-        // strip tags
-        array_walk($contentArray, function(&$value, $key) use ($recordsArray)
-        { 
-            if (!empty($value)) {
-                $value = strip_tags($value);
-                $class = "cell text-truncate";
-            }
-            else {
-                if (empty($recordsArray[$key]))
-                    $value = ' ⸺ ';
-                else
-                    $value = '< ' . $recordsArray[$key] .' >';
-                $class = 'cell cell-empty text-truncate';
-            }
-            $value = '<span class="badge text-bg-primary '.$class.'">'.$value.'</span>';
-
-        });
-        $cellContents = implode(' ', $contentArray);
-
-        // $contentArray = array_filter($contentArray);
-        // $contentString = implode(' | ', $contentArray);
-        // $cellContents = strip_tags($contentString);
-        // $cellContents = GeneralUtility::makeInstance(TextCropper::class)->crop(
-        //     content: $cellContents,
-        //     numberOfChars: 100,
-        //     replacementForEllipsis: '…',
-        //     cropToSpace: true
-        // );
-
-        $amountOfCellsRow = '<span class="ms-2 badge text-bg-secondary float-end">' . $amountOfCells . '</span>';
-        $cellContentsRow  = $cellContents?' &nbsp; <span class="mb-0 float-end" style="line-height:1.75">' . $cellContents . '</span>':'';
-
-        // get configuration of cell information display in rows
+        // get configuration of cell information display
         $extensionConfiguration = GeneralUtility::makeInstance(ExtensionConfiguration::class);
         $displayCells = $extensionConfiguration->get('htmltables', 'showCellInformation');
+
+        // set cell data after row title
         switch ($displayCells) {
             case '1':
                 $params['title'] .= $amountOfCellsRow;
                 break;
-            
+
             case '2':
                 $params['title'] .= $cellContentsRow;
                 break;
@@ -110,5 +69,145 @@ class InlineLabelService
                 break;
         }
         return;
+    }
+
+    /**
+     * receive cell content as html-wrapped piece
+     *
+     * @param array $cells
+     *
+     * @return string
+     */
+    protected function getCellContents($cells)
+    {
+        $contentArray = array_column($cells, 'bodytext');
+        $recordsArray = array_column($cells, 'records');
+
+        // strip tags
+        array_walk($contentArray, function(&$value, $key) use ($recordsArray)
+        {
+            $class = "htmltables-preview-cell text-truncate";
+            if (!empty($value)) {
+                $value = strip_tags($value);
+            }
+            else {
+                if (empty($recordsArray[$key]))
+                    $value = ' ⸺ ';
+                else
+                    $value = '< ' . $recordsArray[$key] .' >';
+
+                $class .= ' cell-empty';
+            }
+            $value = '<span class="badge text-bg-primary text-white '.$class.'">'.$value.'</span>';
+
+        });
+        $cellContents = implode(' ', $contentArray);
+        $cellContentsRow  = $cellContents?' &nbsp; <span class="mb-0 float-end" style="line-height:1.75">' . $cellContents . '</span>':'';
+
+        return $cellContentsRow;
+    }
+
+    /**
+     * get the number of cells in the row
+     *
+     * @param array $cells
+     *
+     * @return integer
+     */
+    protected function getAmountOfCells($cells)
+    {
+        $amountOfCells = count($cells);
+        $amountOfCellsRow = '<span class="ms-2 badge text-bg-secondary text-black float-end">' . $amountOfCells . '</span>';
+        return $amountOfCellsRow;
+    }
+
+    /**
+     * returns the row title
+     *
+     * @param array $row
+     *
+     * @return string
+     */
+    protected function setRowTitle($row)
+    {
+        $contentTable = BackendUtility::getRecord($row['parenttable'], $row['parentid']);
+        $isFirstHeaderRow = $contentTable['table_header_position'] === 1 ? true : false;
+        $isLastFooterRow = $contentTable['table_tfoot'] === 1 ? true : false;
+
+        // set title with preceding nr. (1. Row)
+        if (empty($row['title']))
+            $title = $row['sorting'] ? $row['sorting'].'. Row':'Row';
+        else
+            $title = $row['title'];
+
+        // set [Header] or [Footer]
+        $rowIndex = $this->getRowIndices($row['parentid']);
+        if (is_array($rowIndex)) {
+            if ($isFirstHeaderRow && $rowIndex['isFirst'] === $row['uid'])
+                $title .= ' [Header]';
+
+            if ($isLastFooterRow && $rowIndex['isLast'] === $row['uid'] && $rowIndex['total'] > 2)
+                $title .= ' [Footer]';
+        }
+
+        return $title;
+    }
+
+    /**
+     * return row indices
+     *
+     * @param integer $contentUid
+     *
+     * @return array  row indices
+     */
+    protected function getRowIndices($contentUid)
+    {
+        $table = 'tx_htmltables_table_row';
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($table);
+        $result = $queryBuilder
+            ->select('uid', 'sorting')
+            ->from($table)
+            ->where(
+                $queryBuilder->expr()->eq('parentid', $queryBuilder->createNamedParameter($contentUid, Connection::PARAM_INT))
+            )
+            ->orderBy('sorting')
+            ->executeQuery()
+            ->fetchAllAssociative();
+
+        if (!empty($result)) {
+            $index = [
+                'isFirst'   => current($result)['uid'],
+                'total'     => count($result),
+                'isLast'    => end($result)['uid']
+            ];
+            return $index;
+        }
+        else {
+            return false;
+        }
+
+    }
+
+    /**
+     * return cell data
+     *
+     * @param integer $rowUid
+     *
+     * @return array  cell data
+     */
+    protected function getCellData($rowUid)
+    {
+        $table = 'tx_htmltables_table_cell';
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($table);
+        $result = $queryBuilder
+            ->select('uid', 'headercell', 'bodytext', 'records')
+            ->from($table)
+            ->where(
+                $queryBuilder->expr()->eq('parentid', $queryBuilder->createNamedParameter($rowUid, Connection::PARAM_INT))
+            )
+            ->executeQuery()
+            ->fetchAllAssociative();
+
+        return $result;
     }
 }
