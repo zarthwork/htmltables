@@ -7,9 +7,13 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 defined('TYPO3') or die();
 
-// condition for versions below 13
+// condition for v11
 $versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
 if ($versionInformation->getMajorVersion() < 12) {
-	ExtensionManagementUtility::allowTableOnStandardPages('tx_htmltables_table_row');
-	ExtensionManagementUtility::allowTableOnStandardPages('tx_htmltables_table_cell');
+    ExtensionManagementUtility::allowTableOnStandardPages('tx_htmltables_table_row');
+    ExtensionManagementUtility::allowTableOnStandardPages('tx_htmltables_table_cell');
+
+    // add backend css for v11
+    $GLOBALS['TBE_STYLES']['skins']['htmltables']['name'] = 'htmltables';
+    $GLOBALS['TBE_STYLES']['skins']['htmltables']['stylesheetDirectories'] = ['css' => 'EXT:htmltables/Resources/Public/Backend/Css/'];
 }

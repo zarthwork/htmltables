@@ -31,6 +31,6 @@ defined('TYPO3') or die();
     }
 
     // backend css
-    $GLOBALS['TYPO3_CONF_VARS']['BE']['stylesheets'][$extKey] = 'EXT:'.$extKey.'/Resources/Public/Css/';
+    $GLOBALS['TYPO3_CONF_VARS']['BE']['stylesheets'][$extKey] = 'EXT:'.$extKey.'/Resources/Public/Backend/Css/';
 
 })('htmltables');
