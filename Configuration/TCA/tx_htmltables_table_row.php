@@ -15,6 +15,10 @@ return [
         'enablecolumns' => [
             'disabled' => 'hidden',
         ],
+        'transOrigPointerField' => 'l10n_parent',
+        'transOrigDiffSourceField' => 'l10n_diffsource',
+        'languageField' => 'sys_language_uid',
+        'translationSource' => 'l10n_source',
         'formattedLabel_userFunc' => Zarth\Htmltables\Service\InlineLabelService::class . '->getInlineLabel',
     ],
    'columns' => [
