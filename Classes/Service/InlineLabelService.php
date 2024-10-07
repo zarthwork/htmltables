@@ -195,7 +195,7 @@ class InlineLabelService
      *
      * @return array  cell data
      */
-    protected function getCellData($rowUid)
+    public function getCellData($rowUid)
     {
         $table = 'tx_htmltables_table_cell';
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($table);
@@ -209,5 +209,27 @@ class InlineLabelService
             ->fetchAllAssociative();
 
         return $result;
+    }
+
+    public function getRows($contentUid)
+    {
+        $table = 'tx_htmltables_table_row';
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($table);
+        $result = $queryBuilder
+            ->select('uid', 'sorting')
+            ->from($table)
+            ->where(
+                $queryBuilder->expr()->eq('parentid', $queryBuilder->createNamedParameter($contentUid, Connection::PARAM_INT))
+            )
+            ->orderBy('sorting')
+            ->executeQuery()
+            ->fetchAllAssociative();
+
+        if (!empty($result)) {
+            return $result;
+        }
+        else {
+            return false;
+        }
     }
 }

@@ -1,0 +1,85 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Zarth\Htmltables\Backend\EventListener;
+
+use TYPO3\CMS\Backend\View\Event\PageContentPreviewRenderingEvent;
+use TYPO3\CMS\Core\Attribute\AsEventListener;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
+use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Database\Connection;
+use Zarth\Htmltables\Service\InlineLabelService;
+
+#[AsEventListener(
+    identifier: 'htmltables/preview-rendering-htmltables',
+)]
+final readonly class PageContentPreviewRenderingEventListener
+{
+    public function __invoke(PageContentPreviewRenderingEvent $event): void
+    {
+        if ($event->getTable() !== 'tt_content')
+            return;
+
+        if ($event->getRecord()['CType'] === 'htmltables_htmltable') {
+
+            $inlineLabelService = GeneralUtility::makeInstance(InlineLabelService::class);
+            $rows = $inlineLabelService->getRows($event->getRecord()['uid']);
+            $headerPosition = $event->getRecord()['table_header_position'];
+
+            $previewRows = '';
+            foreach ($rows as $key => $row) {
+                $cells = $inlineLabelService->getCellData($row['uid']);
+                if ($headerPosition === 1 && $key > 0) $headerPosition = 0;
+                $previewRows .=  '<tr>' . $this->getCellContents($cells, $headerPosition) . '</tr>';
+            }
+
+            $caption = $event->getRecord()['table_caption']?'<caption>'.$event->getRecord()['table_caption'].'</caption>':'';
+            $table =    '<table class="table table-sm table-responsive">' .
+                            $caption .
+                            $previewRows .
+                        '</table>';
+
+            $event->setPreviewContent($table);
+        }
+    }
+
+    /**
+     * receive cell content as html-wrapped piece
+     *
+     * @param array $cells
+     *
+     * @return string
+     */
+    protected function getCellContents($cells, $headerPos)
+    {
+        $contentArray   = array_column($cells, 'bodytext');
+        $headerArray    = array_column($cells, 'headercell');
+        $recordsArray   = array_column($cells, 'records');
+
+        // strip tags
+        array_walk($contentArray, function(&$value, $key) use ($recordsArray, $headerArray, $headerPos)
+        {
+            if (!empty($value)) {
+                $value = strip_tags($value);
+            }
+            else {
+                if (empty($recordsArray[$key]))
+                    $value = ' ⸺ ';
+                else
+                    $value = '< ' . $recordsArray[$key] .' >';
+            }
+
+            if ($headerArray[$key] === 1 || $headerPos === 1 || ($headerPos === 2 && $key === 0) )
+                $value = '<th>'.$value.'</th>';
+            else
+                $value = '<td>'.$value.'</td>';
+
+        });
+        $cellContents = implode(' ', $contentArray);
+        $cellContentsRow = $cellContents ? $cellContents : '';
+
+        return $cellContentsRow;
+    }
+}

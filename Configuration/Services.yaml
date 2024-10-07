@@ -1,0 +1,9 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+  Zarth\Htmltables\Backend\EventListener\PageContentPreviewRenderingEventListener:
+    tags:
+      - name: event.listener
+        identifier: 'PageContentPreviewRenderingEventListener'
