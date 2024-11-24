@@ -54,6 +54,8 @@ Don't forget to include the required typoscript into your template!
 
 **Backend**
 
+![Backend preview](https://raw.githubusercontent.com/zarthwork/htmltables/master/Documentation/Images/backend-preview.png)
+
 ![Backend view](https://raw.githubusercontent.com/zarthwork/htmltables/master/Documentation/Images/backend-example_4.png)
 
 ![Backend wizard](https://raw.githubusercontent.com/zarthwork/htmltables/master/Documentation/Images/backend-wizard.png)
