@@ -57,9 +57,11 @@ final readonly class PageContentPreviewRenderingEventListener
         $contentArray   = array_column($cells, 'bodytext');
         $headerArray    = array_column($cells, 'headercell');
         $recordsArray   = array_column($cells, 'records');
+        $colspanArray   = array_column($cells, 'colspan');
+        $rowspanArray   = array_column($cells, 'rowspan');
 
         // strip tags
-        array_walk($contentArray, function(&$value, $key) use ($recordsArray, $headerArray, $headerPos)
+        array_walk($contentArray, function(&$value, $key) use ($recordsArray, $headerArray, $headerPos, $colspanArray)
         {
             if (!empty($value)) {
                 $value = strip_tags($value);
@@ -71,10 +73,13 @@ final readonly class PageContentPreviewRenderingEventListener
                     $value = '< ' . $recordsArray[$key] .' >';
             }
 
+            $colspan = '';
+            if ($colspanArray[$key] > 0) $colspan = ' colspan="'.$colspanArray[$key].'"';
+
             if ($headerArray[$key] === 1 || $headerPos === 1 || ($headerPos === 2 && $key === 0) )
-                $value = '<th>'.$value.'</th>';
+                $value = '<th'.$colspan.'>'.$value.'</th>';
             else
-                $value = '<td>'.$value.'</td>';
+                $value = '<td'.$colspan.'>'.$value.'</td>';
 
         });
         $cellContents = implode(' ', $contentArray);

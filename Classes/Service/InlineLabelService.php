@@ -200,7 +200,7 @@ class InlineLabelService
         $table = 'tx_htmltables_table_cell';
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($table);
         $result = $queryBuilder
-            ->select('uid', 'headercell', 'bodytext', 'records')
+            ->select('uid', 'headercell', 'bodytext', 'records', 'colspan', 'rowspan')
             ->from($table)
             ->where(
                 $queryBuilder->expr()->eq('parentid', $queryBuilder->createNamedParameter($rowUid, Connection::PARAM_INT))
