@@ -17,7 +17,7 @@ This extension is designed to easily create HTML tables with the necessary synta
 ## Latest features
 
 ### Version 0.9.10
-- Render backend preview
+- Render backend preview (version 12 & 13)
 
 ### Version 0.9.9
 - Modified readme
