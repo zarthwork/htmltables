@@ -131,14 +131,16 @@ class InlineLabelService
     protected function setRowTitle($row)
     {
         $contentTable = BackendUtility::getRecord($row['parenttable'], $row['parentid']);
-        $isFirstHeaderRow = $contentTable['table_header_position'] === 1 ? true : false;
-        $isLastFooterRow = $contentTable['table_tfoot'] === 1 ? true : false;
+        $isFirstHeaderRow = !empty($contentTable['table_header_position']) && $contentTable['table_header_position'] === 1 ? true : false;
+        $isLastFooterRow = !empty($contentTable['table_tfoot']) && $contentTable['table_tfoot'] === 1 ? true : false;
 
         // set title with preceding nr. (1. Row)
-        if (empty($row['title']))
-            $title = $row['sorting'] ? $row['sorting'].'. Row':'Row';
-        else
+        if (!empty($row['title']))
             $title = $row['title'];
+        else if (!empty($row['sorting']))
+            $title = $row['sorting'].'. Row';
+        else
+            $title = '<i>NEW Row</i>';
 
         // set [Header] or [Footer]
         $rowIndex = $this->getRowIndices($row['parentid']);
