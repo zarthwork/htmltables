@@ -20,9 +20,24 @@ defined('TYPO3') or die();
     'after'
 );
 
+// add striped column class
+$GLOBALS['TCA']['tt_content']['columns']['table_class']['config']['items'][] = [
+    'label' => 'Striped column',
+    'value' => 'striped-col',
+];
+
+// deactivate the static dropdown from above when »useBootstrapTableClass« has been selected
+if (!empty($GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['htmltables']['useBootstrapTableClass'])) {
+    $GLOBALS['TCA']['tt_content']['columns']['table_class']['config'] = [
+        'type' => 'input',
+        'max' => 255,
+        'size' => 50
+    ];
+}
+
 $temporaryColumn = [
     'table_summary' => [
-        'label' => 'summary',
+        'label' => 'Summary',
         'config' => [
             'type' => 'input',
             'size' => 30,

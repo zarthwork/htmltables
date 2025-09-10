@@ -2,4 +2,5 @@
 showCellInformation = 0
 # cat=frontend; type=boolean; label=Responsive table: @https://design-system.w3.org/styles/tables.html#responsive-tables
 useResponsiveTable = 0
-
+# cat=frontend; type=boolean; label=Use bootstrap "table" class instead of standard "ce-table": Additionally the "table_class" field becomes an open input field. Please clear the caches after switching let the field transformation work
+useBootstrapTableClass = 0
