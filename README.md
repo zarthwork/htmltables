@@ -16,6 +16,10 @@ This extension is designed to easily create HTML tables with the necessary synta
 
 ## Latest features
 
+### Version 0.9.13
+- [FEATURE] Add extension setting "useBootstrapTableClass". Uses "table" class initially – instead of "ce-table"
+– Several visual enhancements in the backend
+
 ### Version 0.9.12
 - [Bugfix] BE Preview: Order Cell Data by "sorting" (thanks to mamoun-al-smaiel)
 
