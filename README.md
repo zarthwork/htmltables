@@ -16,6 +16,9 @@ This extension is designed to easily create HTML tables with the necessary synta
 
 ## Latest features
 
+### Version 0.9.12
+- [Bugfix] BE Preview: Order Cell Data by "sorting" (thanks to mamoun-al-smaiel)
+
 ### Version 0.9.11
 - [Bugfix] Undefined array keys (thanks to MuellerNewMedia)
 
