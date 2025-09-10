@@ -7,7 +7,12 @@
         <div class="table-wrap" role="region" aria-labelledby="{captionId}" tabindex="0">
     </f:if>
 
-    <table class="{f:if(condition:'{data.table_class}', then:'ce-table ce-table-{data.table_class}', else:'ce-table')}" >
+    <f:variable name="tableClass">{f:if(condition:'{data.table_class}', then:'ce-table ce-table-{data.table_class}', else:'ce-table')}</f:variable>
+    <f:if condition="{settings.useBootstrapTableClass}">
+        <f:variable name="tableClass">{f:if(condition:'{data.table_class}', then:'table {data.table_class}', else:'table')}</f:variable>
+    </f:if>
+
+    <table class="{tableClass}">
         <f:if condition="{data.table_caption}">
             <caption{f:if(condition:settings.useResponsiveTable,then:' id=\'{captionId}\'')}>{data.table_caption}</caption>
         </f:if>
