@@ -82,9 +82,10 @@ class InlineLabelService
     {
         $contentArray = array_column($cells, 'bodytext');
         $recordsArray = array_column($cells, 'records');
+        $lastKey = array_key_last($contentArray);
 
         // strip tags
-        array_walk($contentArray, function(&$value, $key) use ($recordsArray)
+        array_walk($contentArray, function(&$value, $key) use ($lastKey, $recordsArray)
         {
             $class = "htmltables-preview-cell text-truncate";
             if (!empty($value)) {
@@ -98,10 +99,11 @@ class InlineLabelService
 
                 $class .= ' cell-empty';
             }
-            $value = '<span class="badge text-bg-primary text-white '.$class.'">'.$value.'</span>';
-
+            $class .= ($key === $lastKey)?' border border-0':' border-end';
+            $value = '<span class="badge rounded-0 bg-transparent '.$class.'">'.$value.'</span>';
         });
-        $cellContents = implode(' ', $contentArray);
+
+        $cellContents = implode('', $contentArray);
         $cellContentsRow  = $cellContents?' &nbsp; <span class="mb-0 float-end" style="line-height:1.75">' . $cellContents . '</span>':'';
 
         return $cellContentsRow;
@@ -116,8 +118,8 @@ class InlineLabelService
      */
     protected function getAmountOfCells($cells)
     {
-        $amountOfCells = count($cells);
-        $amountOfCellsRow = '<span class="ms-2 badge text-bg-secondary text-black float-end">' . $amountOfCells . '</span>';
+        $amountOfCells = is_array($cells)?count($cells):0;
+        $amountOfCellsRow = '<span class="ms-2 badge border float-end">' . $amountOfCells . '</span>';
         return $amountOfCellsRow;
     }
 
