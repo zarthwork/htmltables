@@ -207,6 +207,7 @@ class InlineLabelService
             ->where(
                 $queryBuilder->expr()->eq('parentid', $queryBuilder->createNamedParameter($rowUid, Connection::PARAM_INT))
             )
+            ->orderBy('sorting')
             ->executeQuery()
             ->fetchAllAssociative();
 
