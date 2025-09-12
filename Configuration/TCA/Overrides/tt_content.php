@@ -46,6 +46,21 @@ $temporaryColumn = [
             'eval' => 'trim',
         ],
     ],
+    'table_expand' => [
+        'exclude' => 1,
+        'label' => 'Expand',
+        'config' => [
+            'type' => 'check',
+            'renderType' => 'checkboxToggle',
+            'items' => [
+                [
+                    0 => '',
+                    'labelChecked' => 'Enabled',
+                    'labelUnchecked' => 'Disabled',
+                ],
+            ],
+        ],
+    ],
     'htmltables_row' => [
         'exclude' => 0,
         'label' => 'LLL:EXT:htmltables/Resources/Private/Language/locallang_db.xlf:tt_content.htmltables_row',
@@ -71,7 +86,7 @@ $temporaryColumn = [
 ];
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tt_content', $temporaryColumn);
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addFieldsToPalette('tt_content', 'captionAndSummary', 'table_caption,table_summary');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addFieldsToPalette('tt_content', 'captionAndSummary', 'table_caption,table_summary,table_expand');
 
 // Configure the default backend fields for the content element
 $GLOBALS['TCA']['tt_content']['types']['htmltables_htmltable'] = [

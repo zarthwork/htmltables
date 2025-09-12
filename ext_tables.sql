@@ -1,6 +1,7 @@
 CREATE TABLE tt_content (
 		htmltables_row int(11) DEFAULT '0' NOT NULL,
-		table_summary varchar(255) DEFAULT '' NOT NULL
+		table_summary varchar(255) DEFAULT '' NOT NULL,
+		table_expand tinyint(3) DEFAULT '0' NOT NULL
 );
 
 CREATE TABLE tx_htmltables_table_row(
