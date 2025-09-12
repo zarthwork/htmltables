@@ -39,13 +39,18 @@ class InlineLabelService
     {
         $row = $params['row'];
 
+        $contentElement = $this->getContentElement($row);
+        $autoCols = 0;
+        if (!empty($contentElement['cols']))
+            $autoCols = $contentElement['cols'] - 1;
+
         // set row title
         $params['title'] = $this->setRowTitle($row);
 
         // get cell amount & content
         $cells = $this->getCellData($row['uid']);
         $amountOfCellsRow = $this->getAmountOfCells($cells);
-        $cellContentsRow = $this->getCellContents($cells);
+        $cellContentsRow = $this->getCellContents($cells, $autoCols);
 
         // get configuration of cell information display
         $extensionConfiguration = GeneralUtility::makeInstance(ExtensionConfiguration::class);
@@ -78,11 +83,18 @@ class InlineLabelService
      *
      * @return string
      */
-    protected function getCellContents($cells)
+    protected function getCellContents($cells, $autoCols)
     {
         $contentArray = array_column($cells, 'bodytext');
         $recordsArray = array_column($cells, 'records');
         $lastKey = array_key_last($contentArray);
+
+        // fill up empty cols with generic setting from "cols" field
+        if ($lastKey < $autoCols) {
+            for ($i=$lastKey; $i < $autoCols; $i++)
+                $contentArray[] = '';
+            $lastKey = $autoCols;
+        }
 
         // strip tags
         array_walk($contentArray, function(&$value, $key) use ($lastKey, $recordsArray)
@@ -99,7 +111,7 @@ class InlineLabelService
 
                 $class .= ' cell-empty';
             }
-            $class .= ($key === $lastKey)?' border border-0':' border border-0 border-end';
+            $class .= ($key === $lastKey) ? ' border border-0' : ' border border-0 border-end';
             $value = '<span class="badge rounded-0 bg-transparent '.$class.'">'.$value.'</span>';
         });
 
@@ -123,6 +135,11 @@ class InlineLabelService
         return $amountOfCellsRow;
     }
 
+    protected function getContentElement($row): array
+    {
+        return BackendUtility::getRecord($row['parenttable'], $row['parentid']);
+    }
+
     /**
      * returns the row title
      *
@@ -132,17 +149,17 @@ class InlineLabelService
      */
     protected function setRowTitle($row)
     {
-        $contentTable = BackendUtility::getRecord($row['parenttable'], $row['parentid']);
-        $isFirstHeaderRow = !empty($contentTable['table_header_position']) && $contentTable['table_header_position'] === 1 ? true : false;
-        $isLastFooterRow = !empty($contentTable['table_tfoot']) && $contentTable['table_tfoot'] === 1 ? true : false;
+        $contentElement = $this->getContentElement($row);
+        $isFirstHeaderRow = !empty($contentElement['table_header_position']) && $contentElement['table_header_position'] === 1 ? true : false;
+        $isLastFooterRow = !empty($contentElement['table_tfoot']) && $contentElement['table_tfoot'] === 1 ? true : false;
 
-        // set title with preceding nr. (1. Row)
+        // set title with preceding nr. (1. row)
         if (!empty($row['title']))
             $title = $row['title'];
         else if (!empty($row['sorting']))
-            $title = $row['sorting'].'. Row';
+            $title = $row['sorting'].'. row';
         else
-            $title = '<i>NEW Row</i>';
+            $title = '<i>NEW row</i>';
 
         // set [Header] or [Footer]
         $rowIndex = $this->getRowIndices($row['parentid']);
