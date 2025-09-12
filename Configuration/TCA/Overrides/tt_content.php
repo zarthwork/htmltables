@@ -31,7 +31,35 @@ if (!empty($GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['htmltables']['useBootstrap
     $GLOBALS['TCA']['tt_content']['columns']['table_class']['config'] = [
         'type' => 'input',
         'max' => 255,
-        'size' => 50
+        'size' => 100,
+        'valuePicker' => [
+            'items' => [
+                [
+                    'table-striped',
+                    'table-striped',
+                ],
+                [
+                    'table-striped-columns',
+                    'table-striped-columns',
+                ],
+                [
+                    'table-hover',
+                    'table-hover',
+                ],
+                [
+                    'align-top',
+                    'align-top',
+                ],
+                [
+                    'align-middle',
+                    'align-middle',
+                ],
+                [
+                    'align-bottom',
+                    'align-bottom',
+                ],
+            ],
+        ],
     ];
 }
 
