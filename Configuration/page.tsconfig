@@ -1,5 +1,7 @@
 RTE.config.tx_htmltables_table_cell.bodytext.preset = htmltables
 
+TCEFORM.tt_content.table_tfoot.label = Use last row as footer
+
 mod.wizards.newContentElement.wizardItems {
   # lists {
   common {

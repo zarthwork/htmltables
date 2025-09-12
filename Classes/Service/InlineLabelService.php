@@ -39,7 +39,9 @@ class InlineLabelService
     {
         $row = $params['row'];
 
-        $contentElement = $this->getContentElement($row);
+        if (!empty($row))
+            $contentElement = $this->getContentElement($row);
+
         $autoCols = 0;
         if (!empty($contentElement['cols']))
             $autoCols = $contentElement['cols'] - 1;
@@ -137,7 +139,10 @@ class InlineLabelService
 
     protected function getContentElement($row): array
     {
-        return BackendUtility::getRecord($row['parenttable'], $row['parentid']);
+        if (!empty($row['parenttable']) && !empty($row['parentid']))
+            return BackendUtility::getRecord($row['parenttable'], $row['parentid']);
+        else
+            return [];
     }
 
     /**
@@ -149,7 +154,9 @@ class InlineLabelService
      */
     protected function setRowTitle($row)
     {
-        $contentElement = $this->getContentElement($row);
+        if (!empty($row))
+            $contentElement = $this->getContentElement($row);
+
         $isFirstHeaderRow = !empty($contentElement['table_header_position']) && $contentElement['table_header_position'] === 1 ? true : false;
         $isLastFooterRow = !empty($contentElement['table_tfoot']) && $contentElement['table_tfoot'] === 1 ? true : false;
 

@@ -35,27 +35,27 @@ if (!empty($GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['htmltables']['useBootstrap
         'valuePicker' => [
             'items' => [
                 [
+                    'striped',
                     'table-striped',
-                    'table-striped',
                 ],
                 [
+                    'striped cols',
                     'table-striped-columns',
-                    'table-striped-columns',
                 ],
                 [
+                    'table hover',
                     'table-hover',
-                    'table-hover',
                 ],
                 [
+                    'align top',
                     'align-top',
-                    'align-top',
                 ],
                 [
-                    'align-middle',
+                    'align middle',
                     'align-middle',
                 ],
                 [
-                    'align-bottom',
+                    'align bottom',
                     'align-bottom',
                 ],
             ],

@@ -29,10 +29,12 @@ final readonly class PageContentPreviewRenderingEventListener
             $headerPosition = $event->getRecord()['table_header_position'];
 
             $previewRows = '';
-            foreach ($rows as $key => $row) {
-                $cells = $inlineLabelService->getCellData($row['uid']);
-                if ($headerPosition === 1 && $key > 0) $headerPosition = 0;
-                $previewRows .=  '<tr>' . $this->getCellContents($cells, $headerPosition) . '</tr>';
+            if (!empty($rows)) {
+                foreach ($rows as $key => $row) {
+                    $cells = $inlineLabelService->getCellData($row['uid']);
+                    if ($headerPosition === 1 && $key > 0) $headerPosition = 0;
+                    $previewRows .=  '<tr>' . $this->getCellContents($cells, $headerPosition) . '</tr>';
+                }
             }
 
             $caption = $event->getRecord()['table_caption']?'<caption>'.$event->getRecord()['table_caption'].'</caption>':'';
