@@ -99,7 +99,7 @@ class InlineLabelService
 
                 $class .= ' cell-empty';
             }
-            $class .= ($key === $lastKey)?' border border-0':' border-end';
+            $class .= ($key === $lastKey)?' border border-0':' border border-0 border-end';
             $value = '<span class="badge rounded-0 bg-transparent '.$class.'">'.$value.'</span>';
         });
 
