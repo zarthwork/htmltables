@@ -18,8 +18,10 @@ defined('TYPO3') or die();
 
     // Add TypoScript Setup (useResponsiveTable, useBootstrapTableClass)
     ExtensionManagementUtility::addTypoScriptSetup(
-        'plugin.'.$extKey.'.settings.useResponsiveTable = ' . $extensionConf['useResponsiveTable'] ?? 0 . '
-         plugin.'.$extKey.'.settings.useBootstrapTableClass = ' . $extensionConf['useBootstrapTableClass'] ?? 0
+        'plugin.'.$extKey.'.settings {
+            useResponsiveTable=' . ($extensionConf['useResponsiveTable'] ?? 0) . '
+            useBootstrapTableClass=' . ($extensionConf['useBootstrapTableClass'] ?? 0) .'
+        }'
     );
 
     // condition for v11
