@@ -6,9 +6,9 @@
         'author' => 'Martin Zarth',
         'author_company' => 'Zarthwork',
         'author_email' => 'martin@zarthwork.de',
-        'state' => 'beta',
+        'state' => 'stable',
         'clearCacheOnLoad' => true,
-        'version' => '0.9.13',
+        'version' => '1.0.0',
         'constraints' => [
             'depends' => [
                 'typo3' => '11.5.0-13.9.99',
