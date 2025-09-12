@@ -48,7 +48,7 @@ $temporaryColumn = [
     ],
     'table_expand' => [
         'exclude' => 1,
-        'label' => 'Expand',
+        'label' => 'LLL:EXT:htmltables/Resources/Private/Language/locallang_db.xlf:tt_content.htmltables_expand',
         'config' => [
             'type' => 'check',
             'renderType' => 'checkboxToggle',
