@@ -104,7 +104,7 @@ return [
             ],
         ],
         'class' => [
-            'label' => 'class',
+            'label' => 'Class',
             'config' => [
                 'type' => 'input',
                 'size' => 20,
@@ -126,7 +126,7 @@ return [
         ],
         'headers' => [
             'exclude' => 1,
-            'label' => 'headers',
+            'label' => 'Headers',
             'config' => [
                 'type' => 'input',
                 'size' => 20,
@@ -148,7 +148,7 @@ return [
         ],
         'rowspan' => [
             'exclude' => 1,
-            'label' => 'rowspan',
+            'label' => 'Rowspan',
             'config' => [
                 // 'type' => 'number', v12
                 'type' => 'input',
@@ -158,7 +158,7 @@ return [
         ],
         'colspan' => [
             'exclude' => 1,
-            'label' => 'colspan',
+            'label' => 'Colspan',
             'config' => [
                 // 'type' => 'number', v12
                 'type' => 'input',
