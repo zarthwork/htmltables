@@ -16,9 +16,48 @@ This extension is designed to easily create HTML tables with the necessary synta
 
 ## Latest features
 
+### Version 1.0.0
+- Please check the database for new fields when updating from v0.9
+- Updated images in Readme
+- !!! [FEATURE] expand the table into a fullscreen bootstrap modal. New Template structure!
+- [FEATURE] Set "class" for rows
+- Several enhancements and fixes
+
 ### Version 0.9.13
 - [FEATURE] Add extension setting "useBootstrapTableClass". Uses "table" class initially – instead of "ce-table"
 – Several visual enhancements in the backend
+
+[...]
+
+## Installation
+
+```bash
+composer req zarthwork/htmltables
+```
+
+Don't forget to include the required typoscript into your template!
+
+```
+ + CType: HtmlTable (htmltables)
+```
+
+## Screenshots
+
+**Frontend**
+
+![Frontend view](https://raw.githubusercontent.com/zarthwork/htmltables/master/Documentation/Images/frontend-example-w3c.png)
+
+**Backend**
+
+![Backend preview](https://raw.githubusercontent.com/zarthwork/htmltables/master/Documentation/Images/backend-preview.png)
+
+![Backend view](https://raw.githubusercontent.com/zarthwork/htmltables/master/Documentation/Images/backend-example_4.png)
+
+![Backend wizard](https://raw.githubusercontent.com/zarthwork/htmltables/master/Documentation/Images/backend-wizard.png)
+
+![Backend extension conf](https://raw.githubusercontent.com/zarthwork/htmltables/master/Documentation/Images/system_extconf.png)
+
+## Changelog
 
 ### Version 0.9.12
 - [Bugfix] BE Preview: Order Cell Data by "sorting" (thanks to mamoun-al-smaiel)
@@ -46,34 +85,6 @@ This extension is designed to easily create HTML tables with the necessary synta
 - Extension configuration to switch to responsive table mode
 - New extension icon
 - You'll see a brief cell information in the BE rows
-
-## Installation
-
-```bash
-composer req zarthwork/htmltables
-```
-
-Don't forget to include the required typoscript into your template!
-
-```
- + CType: HtmlTable (htmltables)
-```
-
-## Screenshots
-
-**Frontend**
-
-![Frontend view](https://raw.githubusercontent.com/zarthwork/htmltables/master/Documentation/Images/frontend-example.png)
-
-**Backend**
-
-![Backend preview](https://raw.githubusercontent.com/zarthwork/htmltables/master/Documentation/Images/backend-preview.png)
-
-![Backend view](https://raw.githubusercontent.com/zarthwork/htmltables/master/Documentation/Images/backend-example_4.png)
-
-![Backend wizard](https://raw.githubusercontent.com/zarthwork/htmltables/master/Documentation/Images/backend-wizard.png)
-
-![Backend extension conf](https://raw.githubusercontent.com/zarthwork/htmltables/master/Documentation/Images/system_extconf.png)
 
 ## License
 
