@@ -2,25 +2,14 @@
 <f:layout name="Default" />
 <f:section name="Main">
 
-    <f:if condition="{settings.useResponsiveTable}">
-        <f:variable name="captionId">table-caption-id</f:variable>
-        <div class="table-wrap" role="region" aria-labelledby="{captionId}" tabindex="0">
+    <f:if condition="{data.table_expand}">
+        <f:render partial="Modal/Button" arguments="{_all}" />
     </f:if>
 
-    <f:variable name="tableClass">{f:if(condition:'{data.table_class}', then:'ce-table ce-table-{data.table_class}', else:'ce-table')}</f:variable>
-    <f:if condition="{settings.useBootstrapTableClass}">
-        <f:variable name="tableClass">{f:if(condition:'{data.table_class}', then:'table {data.table_class}', else:'table')}</f:variable>
-    </f:if>
+    <f:render partial="Table" arguments="{_all}" />
 
-    <table class="{tableClass}">
-        <f:if condition="{data.table_caption}">
-            <caption{f:if(condition:settings.useResponsiveTable,then:' id=\'{captionId}\'')}>{data.table_caption}</caption>
-        </f:if>
-        <f:render partial="Row" arguments="{data:data, rows:rows}" />
-    </table>
-
-    <f:if condition="{settings.useResponsiveTable}">
-        </div>
+    <f:if condition="{data.table_expand}">
+        <f:render partial="Modal/Modal" arguments="{_all}" />
     </f:if>
 
 </f:section>
