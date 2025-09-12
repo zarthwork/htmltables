@@ -1,20 +1,20 @@
 {namespace t=Zarth\Htmltables\ViewHelpers}
 
 <f:for each="{rows}" as="row" iteration="r">
-    <f:render section="row" arguments="{r:r, data:data, cells:row.records}" />
+    <f:spaceless>
+        <f:render section="Row" arguments="{r:r, row:row.data, data:data, cells:row.records}" />
+    </f:spaceless>
 </f:for>
 
 <f:comment>
     <!-- render each row …  -->
 </f:comment>
-<f:section name="row">
-    <f:spaceless>
+<f:section name="Row">
     <f:render section="RowGroupTags" arguments="{r:r, data:data}" />
-        <tr>
+        <tr{f:if(condition:row.class, then:' class="{row.class}"')}>
             <f:for each="{cells}" as="cell" iteration="c">
                 <f:render partial="Cell" arguments="{r:r, c:c, cell:cell.data, header_position: data.table_header_position, records:cell.records}" />
             </f:for>
-    </f:spaceless>
 </f:section>
 
 

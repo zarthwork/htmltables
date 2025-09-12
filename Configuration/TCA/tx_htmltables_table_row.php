@@ -31,6 +31,17 @@ return [
                 'max' => 30,
                 'required' => false,
                 'eval' => 'trim',
+                'placeholder' => '#. row',
+            ],
+        ],
+        'class' => [
+            'label' => 'Classes',
+            'config' => [
+                'type' => 'input',
+                'size' => 20,
+                'max' => 255,
+                'required' => false,
+                'eval' => 'trim',
             ],
         ],
         'htmltables_col' => [
@@ -94,7 +105,7 @@ return [
     'palettes' => [
         'palette' => [
             'label' => '',
-            'showitem' => 'title, hidden',
+            'showitem' => 'hidden, class, title',
         ],
     ],
     'types' => [

@@ -6,6 +6,7 @@ CREATE TABLE tt_content (
 
 CREATE TABLE tx_htmltables_table_row(
 		title varchar(30) DEFAULT '' NOT NULL,
+		class varchar(30) DEFAULT '' NOT NULL,
 		htmltables_col int(11) DEFAULT '0' NOT NULL,
 		parentid int(11) DEFAULT '0' NOT NULL,
 		parenttable varchar(255) DEFAULT '' NOT NULL

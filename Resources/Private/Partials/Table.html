@@ -10,7 +10,7 @@
 
 <table class="{tableClass}">
     <f:if condition="{data.table_caption}">
-        <caption{f:if(condition:settings.useResponsiveTable,then:' id=\'{captionId}\'')}>{data.table_caption}</caption>
+    <caption{f:if(condition:settings.useResponsiveTable,then:' id=\'{captionId}\'')}>{data.table_caption}</caption>
     </f:if>
     <f:render partial="Row" arguments="{data:data, rows:rows}" />
 </table>
