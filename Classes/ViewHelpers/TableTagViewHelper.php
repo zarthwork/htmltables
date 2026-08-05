@@ -11,7 +11,7 @@ class TableTagViewHelper extends AbstractTagBasedViewHelper
 
     protected $validAttributes = ['title','rowspan','colspan','scope','abbr','class','headers','id'];
 
-    public function initialize()
+    public function initialize(): void
     {
         // we want to dynamically set the tag name by the
         // given argument, so we need to reset the default tag
@@ -22,7 +22,7 @@ class TableTagViewHelper extends AbstractTagBasedViewHelper
             $this->tag->setTagName($tagName);
         }
     }
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         parent::initializeArguments();
         $this->registerArgument('attributesInArray', 'array', 'Array of tag attributes');
@@ -30,11 +30,11 @@ class TableTagViewHelper extends AbstractTagBasedViewHelper
         $this->registerArgument('tagName', 'string', 'Name of tag');
     }
 
-    public function render()
+    public function render(): string
     {
         // set content
         $this->tag->setContent($this->renderChildren());
-        
+
         // set role attribute
         if (!empty($this->arguments['role'])) {
             $role = $this->arguments['role'];
