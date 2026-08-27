@@ -12,6 +12,7 @@ return [
         'crdate' => 'crdate',
         'delete' => 'deleted',
         'sortby' => 'sorting',
+        'versioningWS' => true,
         'enablecolumns' => [
             'disabled' => 'hidden',
         ],
